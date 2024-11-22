@@ -47,7 +47,7 @@ export default async  function BuildingForSell() {
                           <div className="mx-[1em] mb-[1em] ">
                               <span className="font-bold">{home.type}</span>
                               <span className="text-sm"> •Ejerudgift: </span>
-                              <span className="text-sm">{formatNumberWithDots(home.netto)} kr.</span>
+                              <span className="text-sm">{formatNumberWithDots(home.cost)} kr.</span>
                           </div>
                           <div className="w-[18em] border-b-2 border-gray-400 mt-2 mx-auto"></div>
                         </div>

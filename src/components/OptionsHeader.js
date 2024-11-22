@@ -13,7 +13,7 @@ export default function OptionsHeader() {
         <Link href="/buildingForSell">
              <li>Boliger til salg</li>
         </Link>
-        <Link href="/">
+        <Link href="/agents">
             <li>Mæglere</li>
         </Link>
         <Link href="/">

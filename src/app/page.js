@@ -5,6 +5,8 @@ import OptionsHeader from "@/components/OptionsHeader";
 import Footer from "@/components/Footer";
 import ExperienceSection from "@/components/ExperienceSection";
 import SelectedHomes from "@/components/SelectedHomes";
+import Registeration from "@/components/Registeration";
+import SelectedAgents from "@/components/SelectedAgents";
 export default function Home() {
   return (
     <div 
@@ -15,6 +17,8 @@ export default function Home() {
       <Hero />
       <ExperienceSection />
      <SelectedHomes />
+     <Registeration />
+     <SelectedAgents />
       <Footer />
     </div>
   );
