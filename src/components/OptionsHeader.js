@@ -10,7 +10,7 @@ export default function OptionsHeader() {
 
 
       <ul className="flex justify-around w-[30em]">
-        <Link href="/">
+        <Link href="/buildingForSell">
              <li>Boliger til salg</li>
         </Link>
         <Link href="/">

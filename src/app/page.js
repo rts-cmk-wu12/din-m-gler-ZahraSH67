@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import OptionsHeader from "@/components/OptionsHeader";
 import Footer from "@/components/Footer";
 import ExperienceSection from "@/components/ExperienceSection";
-// import HomePage from "@/components/SelectedHomesCard";
 import SelectedHomes from "@/components/SelectedHomes";
 export default function Home() {
   return (
