@@ -33,11 +33,11 @@ export default function SelectedAgents() {
             <h2 className="font-bold text-lg mb-[1em]">Mød vores engagerede medarbejdere</h2>
             <p className="text-xs text-center mb-[2em]">Din Mægler er garant for altid veluddannet assistance i dit boligsalg. <br/> 
                 Kontakt en af vores medarbejdere.</p>
-            <div className="grid grid-cols-3 grid-rows-1 gap-[2em]">
+            <div className="grid grid-cols-3 grid-rows-1 gap-[1em]">
                 {displayedAgents.map((agent) => (
                     <div key={agent.id} className="flex flex-col items-center shadow rounded">
                         <div>
-                            <Image src={agent.image.url} alt="" width={300} height={300}/>
+                            <Image src={agent.image.url} alt="" width={200} height={200}/>
                         </div>
                         <div className="flex flex-col items-center h-[8em]">
                             <p className="font-bold text-sm mt-[1em] mb-[1em]">{agent.name}</p>

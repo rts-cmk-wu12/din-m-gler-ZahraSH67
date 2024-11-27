@@ -9,12 +9,12 @@ import customer from "@/assets/images/customer.png"
 
 export default function ExperienceSection() {
     return (
-      <section className="flex flex-col ">
+      <section className="flex flex-col items-center  mb-[4em]">
         {/* md:flex-row items-center justify-between px-6 md:px-20 py-10 */}
         {/* Left Image Section */}
 
 
-        <article className="flex items-center justify-between px-6 md:px-20 py-10  relative">
+        <article className="flex items-center justify-between py-10 relative">
         <div className="w-[20em] h-[20em] after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-[50%] after:h-[2px] after:bg-[#D3DEE8] after:-translate-x-1/2">  
             <Image
               src={family}
@@ -26,14 +26,14 @@ export default function ExperienceSection() {
         {/* Right Text Content */}
         <div className="flex-1 md:ml-10 mt-10 md:mt-0 text-center md:text-left">
           {/* Heading */}
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-2xl font-bold">
             Vi har fulgt danskerne hjem <br /> i snart 4 årtier
           </h2>
           {/* Description */}
           <h3 className="font-bold mt-[1em] mb-[1em]">
             Det synes vi siger noget om os! 
           </h3>
-            <p className="text-xs mb-[1em]">
+          <p className="text-xs mb-[1em]">
             It is a long established fact that a
             reader will be distracted by the  <br/> readable content of a page when
             looking at its layout. The point of <br/> using Lorem Ipsum is that it has
@@ -42,11 +42,13 @@ export default function ExperienceSection() {
             <p className="text-xs">It is a long established fact that a reader will be distracted by the <br/> 
                readable content of a page when looking at its layout.
             </p>
+       
+          
           
         
   
           {/* Statistics */}
-          <div className="flex flex-wrap justify-center md:justify-start gap-8 mt-6">
+          <div className="flex flex-wrap justify-center md:justify-start gap-[1em] mt-6">
             {/* Statistic Item */}
 
             <div className="flex items-center">
@@ -78,38 +80,41 @@ export default function ExperienceSection() {
         
 
 
-        <article className="flex items-center gap-[4em] mt-[2em]">
+        <article className="flex items-center gap-[2em] mt-[2em]">
 
-          <div className="flex gap-[1em]  w-[20em] h-[8em] ml-[8em]">
+          <div className="flex gap-[1em]">
             <div className="flex justify-center items-center w-[2em] h-[2em] bg-[#EEF7FF] ">
               <Image src={property} alt="property" />
             </div>
+
             <div>
-              <h3 className="font-bold mb-[1em]">Bestil et salgstjek</h3>
+              <h3 className="font-bold ">Bestil et salgstjek</h3>
               <p className="text-xs max-w-[180px]">Med et Din Mægler Salgstjek 
                   bliver du opdateret på værdien 
                   af din bolig.</p>
             </div>
+
           </div>
 
-          <div className="flex gap-[1em] w-[20em] h-[8em]">
+
+          <div className="flex gap-[1em]">
             <div className="flex justify-center items-center w-[2em] h-[2em] bg-[#EEF7FF]">
-                <Image src={blackLocation} alt="location" className="w-[1.5em] h-[1.5em]"/>
+                <Image src={blackLocation} alt="location" />
             </div>
             <div>
-              <h3 className="font-bold mb-[1em]">74 butikker</h3>
+              <h3 className="font-bold ">74 butikker</h3>
               <p className="text-xs max-w-[180px]">Hos Din Mægler er din bolig 
               til salg i alle vores 74 butikker, som er fordelt rundt om i Danmark.</p>
             </div>
           </div>
 
 
-          <div className="flex gap-[1em] w-[20em] h-[8em]">
+          <div className="flex gap-[1em]">
             <div className="flex justify-center items-center w-[2em] h-[2em] bg-[#EEF7FF]">
                 <Image src={customer} alt="customer"/>
             </div>
             <div>
-              <h3 className="font-bold mb-[1em]">Tilmeld køberkartotek</h3>
+              <h3 className="font-bold">Tilmeld køberkartotek</h3>
               <p className="text-xs max-w-[180px]">Når du er tilmeldt vores køberkartotek, 
                 bliver du kontaktet inden en ny bolig bliver annonceret.</p>
             </div>

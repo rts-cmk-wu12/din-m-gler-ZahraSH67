@@ -5,11 +5,15 @@ import Link from "next/link";
 
 export default function OptionsHeader() {
   return (
-    <div className="flex justify-around items-center h-[4em]">
-      <Image src={logo} alt="logo"/>
+    <div className="flex justify-evenly items-center h-[4em] px-[2em] ">
+
+      <Link href="/">
+        <Image src={logo} alt="logo" className="w-[12em] h-[2em]"/>
+      </Link>
+     
 
 
-      <ul className="flex justify-around w-[30em]">
+      <ul className="flex justify-between text-xs gap-[2em]">
         <Link href="/buildingForSell">
              <li>Boliger til salg</li>
         </Link>

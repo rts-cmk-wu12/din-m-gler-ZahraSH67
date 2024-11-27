@@ -67,9 +67,9 @@ export default function SelectedHomes() {
 
 
       {/* Map through the homes data and pass each home as props to SelectedHomesCard */}
-      <section className="grid grid-cols-2 gap-6">
+      <section className="grid grid-cols-2 gap-[1em]">
         {displayedHomes.map((home) => (
-                <div key={home.id} className="w-[25em] h-auto shadow-md rounded-lg">
+                <div key={home.id} className="w-[20em] h-auto shadow-md rounded-lg">
 
                         <div className="w-full">
                         <Image src={home.images[0].url} alt="Building picture" width={400} height={300}/>
@@ -102,7 +102,7 @@ export default function SelectedHomes() {
 
 
        {/* Button to toggle between showing all homes and only 4 */}
-      <div className="mt-4 text-center">
+      <div className="mt-[3em] text-center">
         <button
           onClick={() => setShowAll((prev) => !prev)}
           className="px-4 py-2 bg-customBlue text-white hover:bg-blue-600"
