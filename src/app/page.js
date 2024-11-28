@@ -7,6 +7,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import SelectedHomes from "@/components/SelectedHomes";
 import Registeration from "@/components/Registeration";
 import SelectedAgents from "@/components/SelectedAgents";
+import GetApp from "@/components/GetApp";
 export default function Home() {
   return (
     <div 
@@ -19,6 +20,7 @@ export default function Home() {
      <SelectedHomes />
      <Registeration />
      <SelectedAgents />
+     <GetApp />
       <Footer />
     </div>
   );

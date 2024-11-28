@@ -14,18 +14,11 @@ export default function OptionsHeader() {
 
 
       <ul className="flex justify-between text-xs gap-[2em]">
-        <Link href="/buildingForSell">
-             <li>Boliger til salg</li>
-        </Link>
-        <Link href="/agents">
-            <li>Mæglere</li>
-        </Link>
-        <Link href="/">
-            <li>Mine favoritter</li>
-        </Link>
-        <Link href="/">
-            <li>Kontakt os</li>
-        </Link>
+        <li><Link href="/buildingForSell">Boliger til salg</Link></li>
+        <li><Link href="/agents">Mæglere</Link></li>
+        <li><Link href="/savedBuildings">Mine favoritter</Link></li>
+        <li><Link href="/">Kontakt os</Link></li>
+      
       </ul>
 
     </div>
