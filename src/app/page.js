@@ -8,6 +8,8 @@ import SelectedHomes from "@/components/SelectedHomes";
 import Registeration from "@/components/Registeration";
 import SelectedAgents from "@/components/SelectedAgents";
 import GetApp from "@/components/GetApp";
+import ErrorPage from "@/components/ErrorPage";
+
 export default function Home() {
   return (
     <div 
@@ -22,6 +24,7 @@ export default function Home() {
      <SelectedAgents />
      <GetApp />
       <Footer />
+      <ErrorPage />
     </div>
   );
 }

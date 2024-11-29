@@ -12,6 +12,7 @@ module.exports = {
         foreground: "var(--foreground)",
          customBlue: '#162A41',
          fontColor: '#7B7B7B',
+         errorFooter: '#25517A'
       },
     },
   },

@@ -5,13 +5,46 @@ import OptionsHeader from "@/components/OptionsHeader";
 import Footer from "@/components/Footer";
 import Title from "@/components/Title";
 import Link from "next/link";
+import ErrorPage from "@/components/ErrorPage";
 
 
 export default async  function BuildingForSell() {
- 
-    const res = await fetch('https://dinmaegler.onrender.com/homes');
-    const data = await res.json();
+  let data = null;
+  let error = false;
+
+  try {
+    const res = await fetch('https://dinmaegler.onrender.com/homes', { cache: 'no-store' }); // Ensures SSR fetching
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+     data = await res.json();
     console.log("DATA IS:", data)
+  } catch (err) {
+    console.error('Fetch error:', err);
+    error = true;
+  }
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    // const res = await fetch('https://dinmaegler.onrender.com/homes');
+    // const data = await res.json();
+    // console.log("DATA IS:", data)
 
      //Random color
      const getRandomColor = () => {
@@ -26,6 +59,12 @@ export default async  function BuildingForSell() {
     const formatNumberWithDots = (number) => {
       return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
+
+
+    if (error) {
+      return <ErrorPage />;
+    } 
+
   return (
     <div>
       <ContactHeader />

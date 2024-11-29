@@ -49,41 +49,6 @@ export default function BuildingDetails({ building }) {
   const closeLocation = () => setIsLocationOpen(false);
 
 
-
-  // Load saved state from local storage
-  // useEffect(() => {
-  //   const savedBuildings = JSON.parse(localStorage.getItem("savedBuildings")) || [];
-  //   setIsLiked(savedBuildings.some(saved => saved.id === building.id));
-  // }, [building.id]);
-
-  // useEffect(() => {
-  //   // Check if building and building.id are defined before accessing them
-  //   if (building && building.id) {
-  //     const savedBuildings = JSON.parse(localStorage.getItem("savedBuildings")) || [];
-  //     setIsLiked(savedBuildings.some(saved => saved.id === building.id));
-  //   }
-  // }, [building]);
-  
-
-  // const handleLikeClick = () => {
-  //   const savedBuildings = JSON.parse(localStorage.getItem("savedBuildings")) || [];
-  
-  //   if (isLiked) {
-  //     // Remove from saved if already liked
-  //     const updatedBuildings = savedBuildings.filter(
-  //       (saved) => saved.id !== building.id
-  //     );
-  //     localStorage.setItem("savedBuildings", JSON.stringify(updatedBuildings));
-  //   } else {
-  //     // Add building to saved list
-  //     const updatedBuildings = [...savedBuildings, building];
-  //     localStorage.setItem("savedBuildings", JSON.stringify(updatedBuildings));
-  //   }
-  
-  //   setIsLiked(!isLiked); // Toggle like state
-  // };
-  
-// Load saved state from local storage
 useEffect(() => {
   if (building && building.id) {
     const savedBuildings = JSON.parse(localStorage.getItem("savedBuildings")) || [];
@@ -251,10 +216,9 @@ const handleLikeClick = () => {
             </div>
           </div>
 
-
-
         )}
 
+<div className='w-[60em] mx-auto border-b-2 border-gray-200 mt-[2em] mb-[1em] px-[5em]'></div>
 
          <div className="overflow-x-auto mx-[12em] mt-[2em]">
        <table className="min-w-full table-auto border-collapse ">
@@ -331,20 +295,6 @@ const handleLikeClick = () => {
           </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-          
-     
-         
           {/* <div className='absolute bottom-0 left-0 bg-customBlue text-white text-xs px-2 py-1 w-[60%]'>GOALLLLLLLLLLLLLLLLLLLLLLLLL</div> */}
     
           

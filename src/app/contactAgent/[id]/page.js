@@ -10,21 +10,58 @@ import instagram from "@/assets/images/instagram.png"
 import linkedIn from "@/assets/images/linkedIn1.png"
 import skype from "@/assets/images/skype.png"
 import search from "@/assets/images/search.png"
+import ErrorPage from "@/components/ErrorPage";
 
 
 export default async function ContactAgent({ params }) {
-    const { id } = await params; // Get the building ID from the URL
+  const { id } = params; // Extract ID from URL params
+  let agent = null;
+  let error = false;
+
+  try {
+    const res = await fetch(`https://dinmaegler.onrender.com/agents/${id}`, { cache: "no-store" }); // Ensures fresh data fetching
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    agent = await res.json();
+    console.log("Agent:", agent)
+  } catch (err) {
+    console.error("Fetch error:", err);
+    error = true;
+  }
+
+  if (error) {
+    return <ErrorPage />; // Render ErrorPage if an error occurs
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const { id } = await params; // Get the building ID from the URL
   
     // Fetch the building data based on the ID
-    const res = await fetch(`https://dinmaegler.onrender.com/agents/${id}`);
+    // const res = await fetch(`https://dinmaegler.onrender.com/agents/${id}`);
   
-    if (!res.ok) {
+    // if (!res.ok) {
       // If no data is found, return a 404 page
-      notFound();
-    }
+    //   notFound();
+    // }
   
-    const agent = await res.json();
-    console.log("Agent:", agent)
+    // const agent = await res.json();
+    // console.log("Agent:", agent)
     return(
         <div>
           <ContactHeader />

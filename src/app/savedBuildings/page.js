@@ -7,6 +7,7 @@ import OptionsHeader from '@/components/OptionsHeader';
 import Title from '@/components/Title';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import ErrorPage from '@/components/ErrorPage';
 
 
 const formatNumberWithDots = (number) => {
@@ -21,13 +22,25 @@ const formatNumberWithDots = (number) => {
 
 export default function SavedBuildings() {
   const [savedBuildings, setSavedBuildings] = useState([]);
+  const [error, setError] = useState(false); // State to handle errors
+
+  // useEffect(() => {
+  //   const saved = JSON.parse(localStorage.getItem("savedBuildings")) || [];
+  //   console.log("SAVED BUILDINGS:", saved); // Debugging
+
+  //   setSavedBuildings(saved);
+  // }, []); // Runs only once when the component 
+  
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("savedBuildings")) || [];
-    console.log("SAVED BUILDINGS:", saved); // Debugging
-
-    setSavedBuildings(saved);
-  }, []); // Runs only once when the component mounts
+    try {
+      const saved = JSON.parse(localStorage.getItem("savedBuildings")) || [];
+      setSavedBuildings(saved);
+    } catch (err) {
+      console.error("Error loading saved buildings:", err);
+      setError(true); // Set error state if an issue occurs
+    }
+  }, []);
 
 
     // Function to handle removing a building from favorites
@@ -36,6 +49,11 @@ export default function SavedBuildings() {
       setSavedBuildings(updatedBuildings);
       localStorage.setItem("savedBuildings", JSON.stringify(updatedBuildings)); // Update local storage
     }; 
+
+     // Render the ErrorPage if an error occurs
+  if (error) {
+    return <ErrorPage />;
+  }
 
   return (
     <div className="">

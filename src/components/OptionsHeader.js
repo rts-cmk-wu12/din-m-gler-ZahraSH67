@@ -17,7 +17,7 @@ export default function OptionsHeader() {
         <li><Link href="/buildingForSell">Boliger til salg</Link></li>
         <li><Link href="/agents">Mæglere</Link></li>
         <li><Link href="/savedBuildings">Mine favoritter</Link></li>
-        <li><Link href="/">Kontakt os</Link></li>
+        <li><Link href="/contactUs">Kontakt os</Link></li>
       
       </ul>
 
