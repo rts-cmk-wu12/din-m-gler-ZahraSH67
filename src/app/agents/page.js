@@ -108,7 +108,12 @@ export default async function Agents() {
       <ContactHeader />
       <OptionsHeader />
       <Title title="Medarbejdere i Roskilde" />
-      <main className="grid grid-cols-3 grid-rows-2 gap-2 mx-[4em]">
+      <main className=" grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 px-4 md:px-8 mx-10 mb-8
+      
+      
+      
+      ">
+         {/* grid grid-cols-3 grid-rows-2 gap-2 mx-[4em] */}
         {agentData.map((agent) => (
           <div key={agent.id} className="flex flex-col items-center shadow rounded p-4 m-4">
             <Link href={`/contactAgent/${agent.id}`} className="w-full h-full flex flex-col items-center">

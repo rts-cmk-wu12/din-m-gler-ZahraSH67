@@ -5,10 +5,10 @@ import OptionsHeader from "@/components/OptionsHeader";
 import Footer from "@/components/Footer";
 import ExperienceSection from "@/components/ExperienceSection";
 import SelectedHomes from "@/components/SelectedHomes";
-import Registeration from "@/components/Registeration";
+import Registeration from "@/components/Subscription";
 import SelectedAgents from "@/components/SelectedAgents";
 import GetApp from "@/components/GetApp";
-import ErrorPage from "@/components/ErrorPage";
+// import ErrorPage from "@/components/ErrorPage";
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
      <SelectedAgents />
      <GetApp />
       <Footer />
-      <ErrorPage />
+      {/* <ErrorPage /> */}
     </div>
   );
 }

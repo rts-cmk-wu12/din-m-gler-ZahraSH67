@@ -1,6 +1,6 @@
 
 import cover from "@/assets/images/cover.png"
-export default function Title({title}) {
+export default function Title({title, subTitle}) {
   return (
     <div className=" relative h-[200px] w-full bg-cover bg-center mb-[2em]"
         style={{ backgroundImage: `url(${cover.src})` }}
@@ -8,10 +8,11 @@ export default function Title({title}) {
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
            {/* Title text */}
-        <div className="relative flex items-center justify-center h-full">
+        <div className="relative flex flex-col items-center justify-center h-full">
             <h1 className="text-white text-3xl md:text-6xl font-bold text-center">
            {title}
             </h1>
+            {/* <h2>{subTitle}</h2> */}
         </div>
       
     </div>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import playStore from "@/assets/images/playStore.png"
 import apple from "@/assets/images/apple.png"
 import mixPic from "@/assets/images/mixPic.png"
+import Link from "next/link";
 
 
 export default function GetApp() {
@@ -18,14 +19,14 @@ export default function GetApp() {
                  for din bolig i alle vores salgskanaler.
             </p>
             <div className="flex gap-[1em]">
-                <button className="bg-white text-black flex p-[0.5em]">
+                <Link href="https://play.google.com/store/apps" className="bg-white text-black flex p-[0.5em]">
                     <Image src={playStore} alt="play store icon"/>
                     Google Play
-                </button>
-                <button className="flex p-[0.5em] border border-gray-200">
+                </Link>
+                <Link href="https://www.apple.com/dk/store" className="flex p-[0.5em] border border-gray-200">
                     <Image src={apple} alt="alt"/>
                     Apple Store
-                </button>
+                </Link>
             </div>
            
         </div>

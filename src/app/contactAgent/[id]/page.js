@@ -35,33 +35,6 @@ export default async function ContactAgent({ params }) {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // const { id } = await params; // Get the building ID from the URL
-  
-    // Fetch the building data based on the ID
-    // const res = await fetch(`https://dinmaegler.onrender.com/agents/${id}`);
-  
-    // if (!res.ok) {
-      // If no data is found, return a 404 page
-    //   notFound();
-    // }
-  
-    // const agent = await res.json();
-    // console.log("Agent:", agent)
     return(
         <div>
           <ContactHeader />
@@ -69,15 +42,18 @@ export default async function ContactAgent({ params }) {
           <Title title="Kontakt en medarbejder"/>
           
          
-          <main className="flex  gap-[1em] mx-[10em] ">
-            <section className="w-3/4 border-2 border-gray-300">
+          <main className="flex flex-col lg:flex-row gap-8 mx-4 lg:mx-20 mt-8">
+            <section className="w-full lg:w-2/3 border-2 border-gray-300 p-4">
+            {/* w-3/4 border-2 border-gray-300 "> */}
+           
 
 
-                <div className="flex items-start gap-[2em] py-[2em] px-[2em]">
+                <div className="flex flex-col md:flex-row items-start gap-6">
+                {/* flex items-start gap-[2em] py-[2em] px-[2em]"> */}
 
-            
-                  <div className="flex justify-center">
-                    <div className="relative w-64 h-64 shadow-lg overflow-hidden">
+                   {/* Agent Image & Social Links */}
+               
+                    <div className="relative w-full md:w-64 h-64 shadow-lg overflow-hidden">
                    
                       <Image src={agent.image.url} 
                         alt="Profile"
@@ -87,7 +63,7 @@ export default async function ContactAgent({ params }) {
                       />
 
                     
-                      <div className="absolute bottom-10 left-0  bg-customBlue text-white flex gap-[1em] py-[0.5em] px-[1em]">
+                      <div className="absolute bottom-4 left-0 flex gap-4 p-2 bg-customBlue text-white">
                         {/* Instagram */}
                         <a
                           href="https://instagram.com" 
@@ -120,45 +96,40 @@ export default async function ContactAgent({ params }) {
 
                       </div>
                     </div>
-                  </div>
+                  
 
+                  {/* Agent Details */}
+                    <div className="flex-1">
+                      <h2 className="font-bold mb-[1em] text-xl">{agent.name}</h2>
+                      <p className="text-sm text-gray-500">{agent.title}</p>
 
-                  <div className="">
+                    <div className='border-b-2 border-gray-200 my-4'></div>
 
-                    <div>
-                      <h2 className="font-bold mb-[1em]">{agent.name}</h2>
-                      <p className="text-xs text-gray-500">{agent.title}</p>
-                    </div>
-
-
-                    <div className='w-[2em] border-b-2 border-gray-200 mt-[2em] mb-[1em]'></div>
-
-                        <div className='flex items-center gap-[1em] text-xs	mb-[1em]'>
-                          <Image src={call} alt="call" className='w-[1em] h-[1em]'/>
+                        <div className='flex items-center gap-4 text-sm mb-4'>
+                          <Image src={call} alt="call" width={20} height={20}/>
                           <a href={`tel:${agent.phone}`} 
                             className="text-black hover:underline">
                             {agent.phone}
                           </a>
                         </div>
 
-
-                        <div className='flex items-center gap-[1em] text-xs	'>
-                          <Image src={paperplane} alt="paperplane" className='w-[1em] h-[1em]'/>
+                        <div className='flex items-center gap-4 text-sm'>
+                          <Image src={paperplane} alt="paperplane" width={20} height={20}/>
                           <a  href={`mailto:${agent.email}`}  
                             className="text-black hover:underline">
                             {agent.email}
                           </a>
                         </div>
-
                     </div>
+              
                     <button className="">
                       <Image src={love} alt="love button" />
                     </button>
 
                   </div>
 
-             <div className="px-[2em]">
-                <h3 className="font-bold mt-[2em]">Om {agent.name}</h3>
+             <div className="mt-6">
+                <h3 className="font-bold text-lg">Om {agent.name}</h3>
                 {agent.description && (() => {
            
 
@@ -173,46 +144,45 @@ export default async function ContactAgent({ params }) {
 
             return (
               <>
-                <p>{firstPart}</p>
-                <p className="mt-4">{secondPart}</p>
+                <p className="mt-2 text-sm">{firstPart}</p>
+                <p className="mt-2 text-sm">{secondPart}</p>
               </>
             );
           })()}
              </div>
 
-             <div className="flex justify-center">
-             <div className=" flex justify-center w-11/12 my-[2em] border-2 border-gray-300">
-             <div>
-                <h3 className="font-bold py-[2em]">Kontakt {agent.name}</h3>
-                <form className="">
-                  
-                  <div className="flex gap-[2em] mb-[1em]">
 
-                      <label className="flex flex-col"> Navn
+             {/* Contact Form */}
+             <div className="mt-8 border-2 border-gray-300 p-6">
+                <h3 className="font-bold text-lg">Kontakt {agent.name}</h3>
+                <form className="mt-4">
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-1">
+                      <label className="flex flex-col w-full "> Navn
                         <input type="text"
                           placeholder="Indtast navn"
-                          className="border-2 border-gray-300 mt-[0.5em] p-[0.5em]"
+                          className="border-2 border-gray-300 mt-2 p-2"
                         />
                       </label>
 
-                      <label className="flex flex-col"> Email
+                      <label className="flex flex-col w-full "> Email
                         <input type="email"
                           placeholder="Indtast email"
-                          className="border-2 border-gray-300 mt-[0.5em] p-[0.5em]"
+                          className="border-2 border-gray-300 mt-2 p-2"
                         />
                       </label>
 
                   </div>
                 
 
-                   <label className="flex flex-col mb-[1em]"> Emne
+                   <label className="flex flex-col mt-4"> Emne
                     <input type="text"
                        placeholder="Hvad drejer din henvendelse sig om?"
-                       className="border-2 border-gray-300 mt-[0.5em] p-[0.5em]"
+                       className="border-2 border-gray-300 mt-2 p-2"
                        />
                   </label>
 
-                  <label className="flex flex-col"> Besked
+                  <label className="flex flex-col mt-4"> Besked
                     <input type="text"
                       placeholder="Skriv din besked her..."
                       className=" border-2 border-gray-300 mt-[0.5em] pt-[1em] px-[1em] pb-[8em]"
@@ -223,8 +193,8 @@ export default async function ContactAgent({ params }) {
 
 
                 <button className="bg-customBlue text-white my-[2em] w-[10em] h-[4em] text-xs">Send besked</button>
-              </div>
-             </div>
+              
+           
              </div>
 
              
@@ -232,7 +202,7 @@ export default async function ContactAgent({ params }) {
 
 
           
-          <section className="flex flex-col items-center space-y-8 ">
+          <aside className="flex flex-col items-center space-y-8 mb-8">
            
             <div className="w-full max-w-md bg-blue-50 p-[1em]">
               <h2 className="text-l font-bold">Search Property</h2>
@@ -253,7 +223,7 @@ export default async function ContactAgent({ params }) {
           
             <div className="bg-customBlue text-white flex flex-col items-center py-[4em] px-[2em] text-center"
             
-            // className="w-full max-w-md h-[20em] bg-customBlue text-white  text-center"
+          
             >
               <h2 className="text-2xl font-bold mb-2">Find The Best Property</h2>
               <p className="text-lg font-medium mb-4">For Rent Or Buy</p>
@@ -263,7 +233,7 @@ export default async function ContactAgent({ params }) {
               +00 123 456 789
                 </a>
             </div>
-          </section>
+          </aside>
  
 
           </main>
@@ -275,3 +245,18 @@ export default async function ContactAgent({ params }) {
     )
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
