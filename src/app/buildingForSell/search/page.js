@@ -74,7 +74,7 @@ return (
         ) : (
           <ul className=''>
             {filteredData.map((building) => (
-              <li key={building.id} className="border bordr-gray-300 p-4 mb-4 bg-red-500">
+              <li key={building.id} className="border bordr-gray-300 p-4 mb-4">
                  <Link href={`/building/${building.id}`} className="flex">
                   <div className='flex'>
                     <div>

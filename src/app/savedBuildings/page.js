@@ -1,37 +1,23 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-// import Link from 'next/link';
 import ContactHeader from '@/components/ContactHeader';
 import OptionsHeader from '@/components/OptionsHeader';
 import Title from '@/components/Title';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import ErrorPage from '@/components/ErrorPage';
+import FormatNumberWithDots from '@/components/FormatNumberWithDots';
+import GetRandomColor from '@/components/GetRandomColor';
 
 
-const formatNumberWithDots = (number) => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}; 
 
-   //Random color
-   const getRandomColor = () => {
-    const colors = ["bg-red-200", "bg-green-200", "bg-blue-200", "bg-yellow-200", "bg-purple-200"];
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
 
 export default function SavedBuildings() {
   const [savedBuildings, setSavedBuildings] = useState([]);
   const [error, setError] = useState(false); // State to handle errors
 
-  // useEffect(() => {
-  //   const saved = JSON.parse(localStorage.getItem("savedBuildings")) || [];
-  //   console.log("SAVED BUILDINGS:", saved); // Debugging
-
-  //   setSavedBuildings(saved);
-  // }, []); // Runs only once when the component 
   
-
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem("savedBuildings")) || [];
@@ -54,6 +40,7 @@ export default function SavedBuildings() {
   if (error) {
     return <ErrorPage />;
   }
+  
 
   return (
     <div className="">
@@ -77,11 +64,11 @@ export default function SavedBuildings() {
                     <div className='flex gap-[1em] mb-[1em]'>
                       <h3 className='font-bold text-sm'>{building.adress1}</h3>
                       <div className=''>
-                        <span className={`px-2 py-1 ${getRandomColor()}`}>{building.energylabel} </span>
+                        <span className={`px-2 py-1 ${GetRandomColor()}`}>{building.energylabel} </span>
                         <span className="ml-[1em] text-sm">{building.rooms} værelser.  </span>
                         <span className="ml-[0.25em] text-sm">{building.floorplan.size} m²</span>
                       </div>
-                      <p className="font-bold text-sm"> kr. {formatNumberWithDots(building.price)}</p>
+                      <p className="font-bold text-sm"> kr. {FormatNumberWithDots(building.price)}</p>
                     </div>
 
                     <p className=" text-sm mx-[1em] mb-[1em]">{building.postalcode} {building.city}</p>
@@ -90,7 +77,7 @@ export default function SavedBuildings() {
                     <div className="mx-[1em] mb-[1em] text-sm	">
                       <span className="font-bold">{building.type}</span>
                       <span className="text-sm"> •Ejerudgift: </span>
-                      <span className="text-sm">{formatNumberWithDots(building.cost)} kr.</span>
+                      <span className="text-sm">{FormatNumberWithDots(building.cost)} kr.</span>
                     </div>
                     <button className='bg-customBlue text-white p-[1em]'
                     onClick={() => handleRemoveBuilding(building.id)} // Add click handler here

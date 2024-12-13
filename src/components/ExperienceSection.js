@@ -122,11 +122,6 @@ export default function ExperienceSection() {
 
               </article>
         </div>
-
-
-
-     
-
       </section>
     );
   }

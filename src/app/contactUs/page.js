@@ -28,17 +28,21 @@ export default function ContactUs() {
 
    // تعریف اسکیمای اعتبارسنجی Zod
    const schema = z.object({
-    name: z.string().nonempty("Navn er påkrævet."),
-    email: z
-      .string()
-      .email("Ugyldig emailadresse.")
-      .nonempty("Email er påkrævet."),
-    subject: z.string().nonempty("Emne er påkrævet."),
-    message: z.string().nonempty("Besked er påkrævet."),
+    name: z.string().min(1, {message: "Navn er påkrævet."}),
+
+    email: z.string()
+      .min(1, {message:"Email er påkrævet."})
+      .email("Ugyldig emailadresse."),
+
+    subject: z.string().min(1, {message: "Emne er påkrævet."}),
+
+    message: z.string().min(1, {message:"Besked er påkrævet."}),
+
     subscribe: z.boolean(),
   });
 
-  // مدیریت تغییرات در فیلدهای فرم
+
+  // changing control in the fields of form
   const handleInputChange = (e) => {
     const { id, value, type, checked } = e.target;
     setFormData({
@@ -47,14 +51,12 @@ export default function ContactUs() {
     });
   };
 
-    // ارسال فرم به سرور
+    // Sending form to server
     const handleSubmit = async (e) => {
       e.preventDefault();  
 
-
-      // اعتبارسنجی فرم با Zod
+      // Validation with zod
     const validationResult = schema.safeParse(formData);
-
     if (!validationResult.success) {
       const zodErrors = validationResult.error.format();
       setErrors(zodErrors);
@@ -63,41 +65,17 @@ export default function ContactUs() {
 
     setIsSubmitting(true);
     setErrors({});
-    setSuccessMessage("");
+    setSuccessMessage("Din besked er blevet sendt succesfuldt!");
 
-    try {
-      const response = await fetch("https://dinmaegler.onrender.com/auth/local", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json(); // بررسی داده‌ها
-      console.log(data); // اضافه کردن لاگ برای مشاهده پاسخ سرور
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+      subscribe: false,
+    });
 
-
-   
-
-
-      if (response.ok) {
-        setSuccessMessage("Din besked er blevet sendt succesfuldt!");
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-          subscribe: false,
-        });
-      } else {
-        setSuccessMessage("Noget gik galt. Prøv igen senere.");
-      }
-    } catch (error) {
-      console.error("Fetch Error:", error); // خطای شبکه یا ارتباط
-      setSuccessMessage("Noget gik galt. Prøv igen senere.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    setIsSubmitting(false);
   };
 
   

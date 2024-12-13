@@ -18,6 +18,8 @@ export default function Subscription() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false); // Check subscription status
+
+  
   const handleSubscribe = async () => {
     // To validate email
     const validation = emailSchema.safeParse(email);

@@ -34,18 +34,6 @@ export default function SelectedHomes() {
   const displayedHomes = showAll ? homes : homes.sort(() => 0.5 - Math.random()).slice(0,4)
 
 
-  //Random color
-    const getRandomColor = () => {
-      const colors = ["bg-red-200", "bg-green-200", "bg-blue-200", "bg-yellow-200", "bg-purple-200"];
-      return colors[Math.floor(Math.random() * colors.length)];
-    };
-
-  // Function to format numbers with dots
-  const formatNumberWithDots = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
-
-
   return (
     <div className="flex flex-col items-center px-4 md:px-8">
       <h2 className="font-bold text-xl md:text-2xl lg:text-3xl mb-4 text-center">Udvalgte Boliger</h2>

@@ -13,7 +13,6 @@ export default function Hero() {
     const handleSearch = () => {
       if (searchTerm.trim()) {
         router.push(`/buildingForSell/search?search=${encodeURIComponent(searchTerm)}`);
-        // router.push(`/buildingForSale/generalSearchResult`);
       }
     };
 

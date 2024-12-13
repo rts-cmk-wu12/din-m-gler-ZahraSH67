@@ -1,20 +1,17 @@
 "use client"
-import login  from "@/actions/login";
+import loginAction  from "@/actions/loginAction";
 import { redirect } from "next/navigation"
 import { useActionState, useEffect } from "react"
 import ContactHeader from "@/components/ContactHeader";
 import OptionsHeader from "@/components/OptionsHeader";
 import Title from "@/components/Title";
 import Footer from "@/components/Footer";
-
 import Link from "next/link";
-
-
 
 export default function Login() {
 
-  const [formState, formAction] = useActionState(login, null)
-
+  const [formState, formAction] = useActionState(loginAction, null)
+ 
 	useEffect(function() {
 		if (!formState) return
 
@@ -26,7 +23,7 @@ export default function Login() {
 			redirect("/")
 		}
 
-    console.log(formState)
+  
 	}, [formState])
 
   return (
@@ -43,7 +40,8 @@ export default function Login() {
           Log ind på din konto
           </h2>
 
-          <form action={formAction} method="POST">
+          <form 
+          action={formAction}  method="POST">
            
             <div className="flex flex-col mb-4">
               <label htmlFor="fEmail" className="text-sm mb-2">
@@ -51,10 +49,13 @@ export default function Login() {
               </label>
               <input
                 type="email"
+              
                 name="identifier"
                 id="fEmail"
+               
                 placeholder="Email"
                 className="h-10 w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs"
+                
               />
               <span className="text-red-500 text-xs">{formState?.identifier?._errors.map(error => error)}</span>
             </div>
@@ -65,6 +66,9 @@ export default function Login() {
               </label>
               <input
                 type="password"
+            
+              
+              
                 name="password"
                 id="fPass"
                 placeholder="Password"
@@ -107,3 +111,7 @@ export default function Login() {
     </div>
   );
 }
+
+
+
+

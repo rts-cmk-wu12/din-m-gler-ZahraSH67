@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState , useEffect } from "react";
 import email from "@/assets/images/email.png"
 import linkedIn from "@/assets/images/linkedIn.png"
+import Link from "next/link";
 
 
 export default function SelectedAgents() {
@@ -25,8 +26,9 @@ export default function SelectedAgents() {
   
       fetchAgents();
     }, []);
+    const displayedAgents = showAll ? agents : agents.sort(() => 0.5 - Math.random()).slice(0,3)
 
-    const displayedAgents = showAll ? agents : agents.slice(0, 3);
+    // const displayedAgents = showAll ? agents : agents.slice(0, 3);
 
     return (
         <section className="flex flex-col items-center">
@@ -35,7 +37,7 @@ export default function SelectedAgents() {
                 Kontakt en af vores medarbejdere.</p>
             <div className="grid lg:grid-cols-3 grid-rows-1 md:grid-cols-1 gap-[1em]">
                 {displayedAgents.map((agent) => (
-                    <div key={agent.id} className="flex flex-col items-center shadow rounded">
+                    <Link key={agent.id} href={`/contactAgent/${agent.id}`} className="flex flex-col items-center shadow rounded">
                         <div>
                             <Image src={agent.image.url} alt="" width={200} height={200}/>
                         </div>
@@ -43,14 +45,13 @@ export default function SelectedAgents() {
                             <p className="font-bold text-sm mt-[1em] mb-[1em]">{agent.name}</p>
                             <p className="text-xs  text-gray-500 mb-[2em]">{agent.title}</p>
                             <div className="flex justify-evenly gap-[1em]">
-                                <a  href={`mailto:${agent.email}`}  
-                                    className="text-black hover:underline">
-                                    <Image src={email} alt="email" className='w-[1em] h-[1em]'/>
-                                </a>
+                              
+                                <Image src={email} alt="email" className='w-[1em] h-[1em]'/>
+                              
                                 <Image src={linkedIn} alt="linkedIn"/>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
 

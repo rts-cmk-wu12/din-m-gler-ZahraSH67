@@ -1,3 +1,5 @@
+'use client'
+import { useState, useEffect } from 'react';
 import ContactHeader from "@/components/ContactHeader";
 import Footer from "@/components/Footer";
 import OptionsHeader from "@/components/OptionsHeader";
@@ -11,30 +13,99 @@ import linkedIn from "@/assets/images/linkedIn1.png"
 import skype from "@/assets/images/skype.png"
 import search from "@/assets/images/search.png"
 import ErrorPage from "@/components/ErrorPage";
+import { z } from "zod";
+import { useParams } from 'next/navigation';
 
 
-export default async function ContactAgent({ params }) {
-  const { id } = params; // Extract ID from URL params
-  let agent = null;
-  let error = false;
 
-  try {
-    const res = await fetch(`https://dinmaegler.onrender.com/agents/${id}`, { cache: "no-store" }); // Ensures fresh data fetching
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
+  export default function ContactAgent() {
+    const searchParams = useParams();
+    const agentId = searchParams.id; // Extract "id" from query parameters
+    console.log("agentId", agentId);
+
+      //State definiation
+      const [agent, setAgent] = useState(null);
+      const [error, setError] = useState(false);
+      const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        subscribe: false,
+      });
+      const [errors, setErrors] = useState({});
+      const [successMessage, setSuccessMessage] = useState("");
+      const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+
+      const schema = z.object({
+        name: z.string().min(1, {message: "Navn er påkrævet."}),
+        email: z.string().min(1, {message:"Email er påkrævet."}).email("Ugyldig emailadresse."),
+        subject: z.string().min(1, {message: "Emne er påkrævet."}),
+        message: z.string().min(1, {message:"Besked er påkrævet."}),
+      });
+
+      useEffect(() => {
+        if (!agentId) return;
+    
+        const fetchAgent = async () => {
+          try {
+            const res = await fetch(`https://dinmaegler.onrender.com/agents/${agentId}`, { cache: "no-store" });
+            if (!res.ok) throw new Error("Failed to fetch data");
+            const data = await res.json();
+            setAgent(data);
+          } catch (err) {
+            setError(true);
+          }
+        };
+        fetchAgent();
+      }, [agentId]);
+
+      if (error) {
+        return <ErrorPage />; // Render ErrorPage if there's an error
+      }
+    
+      if (!agent) {
+        return <div>Loading...</div>; // Loading message until agent data is fetched
+      }
+
+  
+      // Sending form to server
+      const handleSubmit = async (e) => {
+        e.preventDefault(); 
+        // Validation with zod
+      const validationResult = schema.safeParse(formData);
+      if (!validationResult.success) {
+        const zodErrors = validationResult.error.format();
+        setErrors(zodErrors);
+        return;
+      }
+
+      
+      
+      setIsSubmitting(true);
+      setErrors({});
+      setSuccessMessage("Din besked er blevet sendt succesfuldt!");
+      
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        subscribe: false,
+      });
+      
+      setIsSubmitting(false);
+    };
+
+    const handleInputChange = async (e) => {
+      const{id, value} = e.target
+      setFormData({...formData,
+        [id]: value,});
     }
-    agent = await res.json();
-    console.log("Agent:", agent)
-  } catch (err) {
-    console.error("Fetch error:", err);
-    error = true;
-  }
 
-  if (error) {
-    return <ErrorPage />; // Render ErrorPage if an error occurs
-  }
-
-
+  
     return(
         <div>
           <ContactHeader />
@@ -148,56 +219,89 @@ export default async function ContactAgent({ params }) {
                 <p className="mt-2 text-sm">{secondPart}</p>
               </>
             );
-          })()}
+          })}
              </div>
 
 
              {/* Contact Form */}
              <div className="mt-8 border-2 border-gray-300 p-6">
                 <h3 className="font-bold text-lg">Kontakt {agent.name}</h3>
-                <form className="mt-4">
+                <form className="mt-4"  onSubmit={handleSubmit}>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-1">
                       <label className="flex flex-col w-full "> Navn
-                        <input type="text"
+                        <input 
+                          type="text"
                           placeholder="Indtast navn"
+                          id="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
                           className="border-2 border-gray-300 mt-2 p-2"
                         />
+                          {errors.name && (
+                          <span className="text-red-500 text-xs">
+                      {errors.name._errors[0]}
+                    </span>
+                  )}
                       </label>
 
                       <label className="flex flex-col w-full "> Email
-                        <input type="email"
+                        <input 
+                        type="email"
+                        id="email"
                           placeholder="Indtast email"
                           className="border-2 border-gray-300 mt-2 p-2"
+                          value={formData.email}
+                          onChange={handleInputChange}
                         />
+                         {errors.email && (
+                          <span className="text-red-500 text-xs">
+                          {errors.email._errors[0]}
+                        </span>
+                         )}
                       </label>
 
                   </div>
                 
 
                    <label className="flex flex-col mt-4"> Emne
-                    <input type="text"
+                    <input 
+                    type="text"
+                      id="subject"
                        placeholder="Hvad drejer din henvendelse sig om?"
                        className="border-2 border-gray-300 mt-2 p-2"
+                       value={formData.subject}
+                       onChange={handleInputChange}
                        />
+                             {errors.subject && (
+                        <span className="text-red-500 text-xs">
+                        {errors.subject._errors[0]}
+                      </span>
+                )}
                   </label>
 
                   <label className="flex flex-col mt-4"> Besked
-                    <input type="text"
+                    <input 
+                      type="text"
+                      id="message"
                       placeholder="Skriv din besked her..."
                       className=" border-2 border-gray-300 mt-[0.5em] pt-[1em] px-[1em] pb-[8em]"
+                      value={formData.message}
+                      onChange={handleInputChange}
                     />
+                           {errors.message && (
+                  <span className="text-red-500 text-xs">
+                    {errors.message._errors[0]}
+                  </span>
+                )}
                   </label>
 
+                  <button type="submit" className="bg-customBlue text-white my-[2em] w-[10em] h-[4em] text-xs">
+                      {isSubmitting ? "Sending..." : "Send besked"} 
+                  </button>
                 </form>
-
-
-                <button className="bg-customBlue text-white my-[2em] w-[10em] h-[4em] text-xs">Send besked</button>
-              
-           
-             </div>
-
-             
+                {successMessage && <div className="text-green-500 text-xs mt-2">{successMessage}</div>}
+             </div>   
             </section>
 
 
@@ -211,19 +315,18 @@ export default async function ContactAgent({ params }) {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="w-full  py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-300 focus:outline-none"
+                  className="w-full  py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-300 focus:outline-none placeholder: pl-10"
                 />
-                <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                <button className="absolute inset-y-0 left-3 flex items-center text-gray-400">
                   <Image src={search} alt="search icon" />
              
-                </span>
+                </button>
               </div>
             </div>
 
           
             <div className="bg-customBlue text-white flex flex-col items-center py-[4em] px-[2em] text-center"
             
-          
             >
               <h2 className="text-2xl font-bold mb-2">Find The Best Property</h2>
               <p className="text-lg font-medium mb-4">For Rent Or Buy</p>
@@ -234,12 +337,7 @@ export default async function ContactAgent({ params }) {
                 </a>
             </div>
           </aside>
- 
-
           </main>
-
-
-
           <Footer />
         </div>
     )

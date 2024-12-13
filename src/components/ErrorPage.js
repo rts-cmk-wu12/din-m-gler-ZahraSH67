@@ -1,10 +1,12 @@
 
-
 import Link from 'next/link';
 import ContactHeader from './ContactHeader';
 import OptionsHeader from './OptionsHeader';
 import building from "@/assets/images/building.png"
 import Image from 'next/image';
+import errorIcon from "../assets/images/errorIcon.jpg"
+import galleryPic from "@/assets/images/galleryPic.png"
+import Footer from './Footer';
 
 
 export default function ErrorPage() {
@@ -12,8 +14,8 @@ export default function ErrorPage() {
     <div>
             <ContactHeader />
             <OptionsHeader />
-            <main className="min-h-screen flex flex-col items-center justify-center bg-blue-100 text-center px-6">
-                <h1 className="text-6xl font-bold text-customBlue">Hov!</h1>
+            <section className="min-h-screen flex flex-col items-center justify-center bg-blue-100 text-center px-6">
+                <Image src={errorIcon} alt="errorIcon" height={400} width={400}/>
                 <h2 className="mt-4 text-lg font-semibold">
                     Du er havnet på en side som ikke findes!
                 </h2>
@@ -26,9 +28,9 @@ export default function ErrorPage() {
                     Tilbage til forsiden
                 
                 </Link>
-            </main>
-            <footer className=' flex flex-col  bg-errorFooter text-white'>
-            <section className='flex justify-evenly p-x[2em] py-[4em]'>
+            </section>
+            <section className=' flex flex-col  bg-errorFooter text-white'>
+            <div className='flex justify-evenly p-x[2em] py-[4em]'>
                     <div className=''>
                         <div className='flex gap-[0.5em]'>
                             <Image src={building} alt="building icon " className='w-[1em] h-full'/>
@@ -88,16 +90,17 @@ export default function ErrorPage() {
                         
                     </div>
                     <div>
-                        <h4 className='font-bold'>Follow Instagram</h4>
+                        <h4 className='font-bold mb-4'>Follow Instagram</h4>
+                        <Image src={galleryPic} alt="galleryPic" height={200} width={200}/>
                     </div>
-                </section>
+                </div>
 
                 <div className='w-[50em] mx-auto border-b-2 border-gray-200 mt-[2em] mb-[1em]'></div>
 
                 <div className='text-center mb-[2em] text-sm text-gray-300 '>All Right Reserve By Jit Banik 2020</div>
-            </footer>
+            </section>
           
-            
+            <Footer />
            
     </div>
   );
